@@ -1,7 +1,5 @@
 from requests import get
 
-version = "1.0.0"
-
 class Phoenix():
     def __init__(self):
         self.url = 'https://sheltered-taiga-39139.herokuapp.com/check'

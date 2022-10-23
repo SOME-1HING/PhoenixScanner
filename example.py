@@ -1,4 +1,4 @@
-from Phoenix import Phoenix
+from PhoenixScanner import Phoenix
 
 from telegram import Update
 from telegram.ext import (
