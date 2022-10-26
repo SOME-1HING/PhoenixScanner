@@ -20,14 +20,16 @@ def phoenix(update: Update, context: CallbackContext):
     if user.id in DRAGONS:
         return
     
-    is_gban, reason = scanner.gban_check(user.id)
+    is_gban, reason, scannedby = scanner.gban_check(user.id)
+    res = f"{reason}. Scanned by: {scannedby}"
     
     if is_gban:
-        sql.gban_user(user.id, user.username or user.first_name, reason)
+        sql.gban_user(user.id, user.username or user.first_name, res)
         update.effective_message.reply_text(f"""
 # SCANNED
 User ID: {user.id}
 Reason: {reason}
+Scanned By: {scannedby}
         """)
         
 dispatcher.add_handler(MessageHandler(Filters.all & Filters.chat_type.groups, phoenix, run_async = True))

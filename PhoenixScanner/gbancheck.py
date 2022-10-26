@@ -8,6 +8,9 @@ class Phoenix():
         try:
             url = f"{self.url}/{user_id}"
             is_gban = get(url).json()["is_gban"]
-            return is_gban
+            reason = get(url).json()["reason"]
+            scanner = get(url).json()["scanner"]
+            return is_gban, reason, scanner
         except:
             pass
+ 
