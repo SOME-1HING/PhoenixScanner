@@ -1,18 +1,28 @@
+import os
+from pyrogram import Client, filters
+from pyrogram.types import Message
 from PhoenixScanner import Phoenix
 
-Scanner = Phoenix("token")
+RED = Phoenix(os.getenv("RED7_TOKEN"))
 
-print(Scanner.check(82))
-"Output: {'user_id': 82, 'is_gban': True, 'reason': 'cwsck', 'scanner': 23123}"
+@Message.on_message(filters.group & filters.all)
+async def red7xphoenix(bot: Client, message: Message):
+   user = message.from_user
+   chat = message.chat
+   
+   check = RED.check(user.id)
+   if check['is_gban']:
+      try:
+         user = await bot.get_users(user.id)
+         msg = f"""
+** Alert ⚠️**
+User [{user.first_name}](tg://user?id={user.id}) is officially
+Scanned by Team Red7 | Phoenix API ;)
 
-print(Scanner.revert(82))
-"Output: 'Deleted'"
-
-print(Scanner.scan(82, "cwsck", 23123))
-"Output: 'Done"
-
-print(Scanner.token_gen())
-'Output: "RED7-m201vbup6qefssf7ssqqbn"'
-
-print(Scanner.token_revoke("RED7-m201vbup6qefssf7ssqqbn"))
-'Output: "Deleted"'
+Appeal [Here](https://t.me/Red7WatchSupport)
+"""
+         await bot.ban_chat_member(user.id)
+         await bot.send_message(chat.id, msg)
+      except:
+         await bot.send_message(chat.id, msg)
+         pass
