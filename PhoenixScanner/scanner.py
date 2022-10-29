@@ -3,7 +3,7 @@ from requests import get, put
 
 class Phoenix():
     def __init__(self, token):
-        self.url = 'https://drab-rose-whale-tux.cyclic.app/'
+        self.url = 'https://phoenixscanner-api.some-1hing.repl.co'
         self.token = token
     
     def check(self, user_id):
