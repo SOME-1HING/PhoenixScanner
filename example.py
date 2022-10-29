@@ -1,4 +1,3 @@
-[In reply to SOME1HING]
 import os
 from pyrogram import Client, filters
 from pyrogram.types import Message
