@@ -6,7 +6,7 @@ class Phoenix():
         self.url = 'https://drab-rose-whale-tux.cyclic.app/'
         self.token = token
     
-    def gban_check(self, user_id):
+    def check(self, user_id):
         try:
             url = f"{self.url}/gban/check/{user_id}?TOKEN={self.token}"
             '''if msg := get(url).json()["message"]:
@@ -24,7 +24,7 @@ class Phoenix():
         except Exception as e:
             return e
         
-    def gban_revert(self, user_id):
+    def revert(self, user_id):
         try:
             url = f"{self.url}/gban/revert/{user_id}?TOKEN={self.token}"
             msg = get(url).json()["message"]
@@ -32,7 +32,7 @@ class Phoenix():
         except:
             pass
         
-    def gban_scan(self, user_id, reason, scannedBy):
+    def scan(self, user_id, reason, scannedBy):
         try:
             scan = {
                 "user_id": int(user_id),
