@@ -1,35 +1,18 @@
 from PhoenixScanner import Phoenix
 
-from telegram import Update
-from telegram.ext import (
-    CallbackContext,
-    Filters,
-    MessageHandler,
-)
+Scanner = Phoenix("token")
 
-from Bot import dispatcher
-from Bot import DRAGONS
-from Bot.modules.sql import global_bans_sql as sql
+print(Scanner.gban_check(82))
+"Output: {'user_id': 82, 'is_gban': True, 'reason': 'cwsck', 'scanner': 23123}"
 
-scanner = Phoenix()
+print(Scanner.gban_revert(82))
+"Output: 'Deleted'"
 
-def phoenix(update: Update, context: CallbackContext):
-    msg = update.effective_message
-    user = msg.from_user
+print(Scanner.gban_scan(82, "cwsck", 23123))
+"Output: 'Done"
 
-    if user.id in DRAGONS:
-        return
-    
-    is_gban, reason, scannedby = scanner.gban_check(user.id)
-    res = f"{reason}. Scanned by: {scannedby}"
-    
-    if is_gban:
-        sql.gban_user(user.id, user.username or user.first_name, res)
-        update.effective_message.reply_text(f"""
-# SCANNED
-User ID: {user.id}
-Reason: {reason}
-Scanned By: {scannedby}
-        """)
-        
-dispatcher.add_handler(MessageHandler(Filters.all & Filters.chat_type.groups, phoenix, run_async = True))
+print(Scanner.token_gen())
+'Output: "RED7-m201vbup6qefssf7ssqqbn"'
+
+print(Scanner.token_revoke("RED7-m201vbup6qefssf7ssqqbn"))
+'Output: "Deleted"'
