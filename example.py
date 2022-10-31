@@ -48,7 +48,7 @@ else:
 async def red7xphoenix(bot: RedSeven, message: Message):
    user = message.from_user
    chat = message.chat
-   
+
    check = RED.check(user.id)
    if check['is_gban']:
       user = await bot.get_users(user.id)
@@ -64,4 +64,3 @@ Appeal [Here](https://t.me/Red7WatchSupport)
          await bot.send_message(chat.id, msg, disable_web_page_preview=True)
       except:
          await bot.send_message(chat.id, msg, disable_web_page_preview=True)
-         pass

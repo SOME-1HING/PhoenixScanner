@@ -4,11 +4,13 @@ from setuptools import setup
 version = ''
 with open('PhoenixScanner/__init__.py') as f:
     version = re.search(
-        r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)
+        r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE
+    )[1]
+
 
 
 requirements = ['requests']
-    
+
 
 if not version:
     raise RuntimeError('version is not set')

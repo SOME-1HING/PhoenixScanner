@@ -12,23 +12,22 @@ class Phoenix():
             '''if msg := get(url).json()["message"]:
                 return msg'''
             try:
-                msg = get(url).json()['message']
-                return msg
+                return get(url).json()['message']
             except:
-                result = {
-                "user_id": int(user_id),
-                "is_gban": bool(get(url).json()["is_gban"]),
-                "reason": get(url).json()["reason"],
-                "scanner": get(url).json()["scanner"]}
-                return result
+                return {
+                    "user_id": int(user_id),
+                    "is_gban": bool(get(url).json()["is_gban"]),
+                    "reason": get(url).json()["reason"],
+                    "scanner": get(url).json()["scanner"],
+                }
+
         except Exception as e:
             return e
         
     def revert(self, user_id):
         try:
             url = f"{self.url}/gban/revert/{user_id}?TOKEN={self.token}"
-            msg = get(url).json()["message"]
-            return msg
+            return get(url).json()["message"]
         except:
             pass
         
@@ -40,8 +39,12 @@ class Phoenix():
                 "scanner": int(scannedBy)
             }
             url = f"{self.url}/gban/scan/?TOKEN={self.token}"
-            msg = put(url, data=json.dumps(scan), headers={"Content-Type": "application/json"}).json()['message']
-            return msg
+            return put(
+                url,
+                data=json.dumps(scan),
+                headers={"Content-Type": "application/json"},
+            ).json()['message']
+
         except:
             pass
     
@@ -49,8 +52,7 @@ class Phoenix():
         try:
             url = f"{self.url}/token/tokengen?TOKEN={self.token}"
             try:
-                msg = get(url).json()['message']
-                return msg
+                return get(url).json()['message']
             except:
                 token = get(url).json()["token"]
                 return token
@@ -60,7 +62,6 @@ class Phoenix():
     def token_revoke(self, token):
         try:
             url = f"{self.url}/token/revoke/{token}?TOKEN={self.token}"
-            msg = get(url).json()["message"]
-            return msg
+            return get(url).json()["message"]
         except:
             pass
