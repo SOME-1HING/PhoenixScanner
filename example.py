@@ -13,7 +13,7 @@ async def update_list():
    global SCANLIST
    newlist = RED.scanlist()
    SCANLIST = newlist
-   sleep(60)
+   await sleep(60)
 
 loop = get_event_loop() 
 loop.create_task(update_list())
