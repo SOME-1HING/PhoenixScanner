@@ -3,7 +3,6 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from PhoenixScanner import Phoenix
 from .. import pbot as RedSeven 
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from asyncio import get_event_loop, sleep
 
 
