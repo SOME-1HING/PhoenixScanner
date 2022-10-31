@@ -44,7 +44,15 @@ class Phoenix():
             return msg
         except:
             pass
-    
+        
+    def scanlist(self):
+        try:
+            url = f"{self.url}/gban/scanlist/?TOKEN={self.token}"
+            scanlist = get(url).json()
+            return scanlist
+        except:
+            pass
+            
     def token_gen(self):
         try:
             url = f"{self.url}/token/tokengen?TOKEN={self.token}"

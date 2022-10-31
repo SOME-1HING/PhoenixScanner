@@ -9,7 +9,10 @@ print(Scanner.revert(82))
 "Output: 'Deleted'"
 
 print(Scanner.scan(82, "cwsck", 23123))
-"Output: 'Done"
+"Output: 'Done'"
+
+print(Scanner.scanlist())
+"Output: [3243252, 432552432, 42323242]"
 
 print(Scanner.token_gen())
 'Output: "RED7-m201vbup6qefssf7ssqqbn"'
