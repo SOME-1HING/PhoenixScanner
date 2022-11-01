@@ -1,10 +1,9 @@
 import os
+import asyncio
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from PhoenixScanner import Phoenix
 from .. import pbot as RedSeven 
-from asyncio import get_event_loop, sleep
-
 
 RED = Phoenix(os.getenv("RED7_TOKEN"))
 SCANLIST = []
@@ -13,12 +12,12 @@ async def update_list():
    global SCANLIST
    newlist = RED.scanlist()
    SCANLIST = newlist
-   await sleep(60)
+   await asyncio.sleep(60)
 
-loop = get_event_loop() 
+loop = asyncio.get_event_loop() 
 loop.create_task(update_list())
    
-@RedSeven.on_message(filters.group & filters.all)
+@RedSeven.on_message(filters.user(SCANLIST) & filters.group & filters.all)
 async def red7xphoenix(bot: RedSeven, message: Message):
    user = message.from_user
    chat = message.chat
