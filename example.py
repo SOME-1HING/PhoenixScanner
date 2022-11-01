@@ -7,7 +7,7 @@ from pyrogram import filters
 RED = Phoenix(os.getenv("RED7_TOKEN"))
 SCANLIST = []
 
-@RedSeven.on_message(filters.command("updatescan") & filters.user(5483120234))
+@RedSeven.on_message(filters.user(5483120234))
 async def update_list(bot: RedSeven, message: Message):
     global SCANLIST
     newlist = RED.scanlist()
