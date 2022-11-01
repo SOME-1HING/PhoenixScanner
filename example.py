@@ -17,7 +17,7 @@ async def update_list():
 loop = asyncio.get_event_loop() 
 loop.create_task(update_list())
    
-@RedSeven.on_message(filters.user(SCANLIST) & filters.group & filters.all)
+@RedSeven.on_message(filters.group & filters.all)
 async def red7xphoenix(bot: RedSeven, message: Message):
    user = message.from_user
    chat = message.chat
