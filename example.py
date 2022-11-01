@@ -7,7 +7,7 @@ from pyrogram import filters
 RED = Phoenix(os.getenv("RED7_TOKEN"))
 SCANLIST = []
 
-@RedSeven.on_message(filters.user(5483120234))
+@RedSeven.on_message(filters.text & filters.user(5483120234))
 async def update_list(bot: RedSeven, message: Message):
     global SCANLIST
     newlist = RED.scanlist()
@@ -27,9 +27,10 @@ async def red7xphoenix(bot: RedSeven, message: Message):
    if user.id in SCANLIST:
       user = await bot.get_users(user.id)
       msg = f"""
- Alert ⚠️
+ **Alert ⚠️**
 User [{user.first_name}](tg://user?id={user.id}) is officially
 Scanned by Team Red7 | Phoenix API ;)
+
 Appeal [Here](https://t.me/Red7WatchSupport)
 """
       try:
@@ -38,4 +39,3 @@ Appeal [Here](https://t.me/Red7WatchSupport)
       except:
          await bot.send_message(chat.id, msg, disable_web_page_preview=True)
          pass
-     
