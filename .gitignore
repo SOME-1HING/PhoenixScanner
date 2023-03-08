@@ -1,3 +1,4 @@
 dist
 PhoenixScanner.egg-info
 PhoenixScanner/__pycache__
+.vscode
